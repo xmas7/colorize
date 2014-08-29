@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 
-# Colors
-ESC_SEQ="\x1b["
-COL_RESET=$ESC_SEQ"39;49;00m"
-BG_SEQ=";01m"
-
 # Adjust the default order of the colors here.
 # First highlighted field will be colored in first
 # color, second in second and so on.
+
 COLORS=(
 31 # RED
 32 # GREEN
@@ -21,7 +17,17 @@ COLORS=(
 
 COLORS_LEN=${#COLORS[@]}
 
-containsElement () {
+# Bash color code sequences
+ESC_SEQ="\x1b["
+COL_RESET=$ESC_SEQ"39;49;00m"
+BG_SEQ=";01m"
+
+function show_help {
+   echo "Example usage: $0 0,1,4"
+   echo "This colorizes the fields 0,1 and 4"
+}
+
+function containsElement () {
   local e
   for e in "${@:2}"
   do
@@ -29,7 +35,6 @@ containsElement () {
   done
   return 0
 }
-
 
 function colorize {
 
@@ -63,5 +68,12 @@ function colorize {
   ( IFS=$' '; echo "${output[*]}" )
 }
 
-colorize "colored noncolored noncolored colored" 0,3
+# Check if we got exactly one argument:
+# the fields to be colored
+if [ "$#" -ne 1 ]; then
+  show_help
+  exit
+fi
 
+TEXT=$(cat)
+colorize "$TEXT" $1
