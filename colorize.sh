@@ -75,5 +75,5 @@ if [ "$#" -ne 1 ]; then
   exit
 fi
 
-TEXT=$(cat)
-colorize "$TEXT" $1
+# Colorize all the things!
+while read -r line; do colorize "$line" $1; done
