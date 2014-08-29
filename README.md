@@ -8,9 +8,9 @@ Pretty print log files.
 
 ### input.txt
 
-    2014-08-28 09:58:36,890 404 http://www.example.com 127.0.0.1 Cannot say how awesome this is.
-    2014-08-28 09:59:36,890 404 http://www.example.com/login.html 127.0.0.1 Wait...
-    2014-08-28 10:00:36,890 404 http://www.example.com/secure.html 127.0.0.1 Actually I can
+2014-08-28 09:58:36,890 404 http://www.example.com 127.0.0.1 Cannot say how awesome this is.
+2014-08-28 09:59:36,890 404 http://www.example.com/login.html 127.0.0.1 Wait...
+2014-08-28 10:00:36,890 404 http://www.example.com/secure.html 127.0.0.1 Actually I can
 
 ### command
 
@@ -18,10 +18,9 @@ Pretty print log files.
 
 ### output
 
-    **2014-08-28** 09:58:36,890 **404** http://www.example.com 127.0.0.1 Cannot say how awesome this is.
-    **2014-08-28** 09:59:36,890 **404** http://www.example.com/login.html 127.0.0.1 Wait...
-    **2014-08-28** 10:00:36,890 **404** http://www.example.com/secure.html 127.0.0.1 Actually I can
-
+**2014-08-28** 09:58:36,890 **404** http://www.example.com 127.0.0.1 Cannot say how awesome this is.
+**2014-08-28** 09:59:36,890 **404** http://www.example.com/login.html 127.0.0.1 Wait...
+**2014-08-28** 10:00:36,890 **404** http://www.example.com/secure.html 127.0.0.1 Actually I can
 
 # Donate
 
