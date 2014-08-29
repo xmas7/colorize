@@ -21,21 +21,42 @@ COLORS=(
 
 COLORS_LEN=${#COLORS[@]}
 
+containsElement () {
+  local e
+  for e in "${@:2}"
+  do
+    [[ "$e" == "$1" ]] && return 1
+  done
+  return 0
+}
+
+
 function colorize {
-  # Define our output
-  output=()
 
   # Split the input string into tokens
   IFS=' ' read -ra ARR <<< "$1"
-  # Check which field need to be colored
+
+  # Check which field should be colored
   IFS=',' read -ra FIELDS <<< "$2"
+
+  # Define the output
+  output=()
 
   # For each token...
   for i in "${!ARR[@]}"; do 
     token=${ARR[$i]}
-    color=$(($i % $COLORS_LEN))
-    # Colorize and store in output array
-    output+=($(echo -e "$ESC_SEQ${COLORS[$color]}$BG_SEQ$token$COL_RESET"))
+
+    # Is this a field that should be colored?
+    containsElement $i "${FIELDS[@]}"
+    if [ $? -eq 1 ]
+    then
+      # Yes. Colorize and store in output array
+      color=$(($i % $COLORS_LEN))
+      output+=($(echo -e "$ESC_SEQ${COLORS[$color]}$BG_SEQ$token$COL_RESET"))
+    else
+      # No. Just print the word.
+      output+=($(echo $token))
+    fi
   done
 
   # Print joined output array
